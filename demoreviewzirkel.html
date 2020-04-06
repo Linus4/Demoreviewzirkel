@@ -32,15 +32,27 @@
 				var set = [0, 1, 2, 3, 4];
 				shuffle(set);
 				
-				document.getElementById("r1").innerHTML = pNames[set[0]] + " ➞ " + pNames[set[1]] + "<br>";
-				document.getElementById("r1").innerHTML += pNames[set[2]] + " ➞ " + pNames[set[3]] + "<br>";
-				document.getElementById("r1").innerHTML += cName + " ➞ " + pNames[set[4]] + "<br>";
+				if (cName != "") {
+					document.getElementById("r1").innerHTML = pNames[set[0]] + " ➞ " + pNames[set[1]] + "<br>";
+					document.getElementById("r1").innerHTML += pNames[set[2]] + " ➞ " + pNames[set[3]] + "<br>";
+					document.getElementById("r1").innerHTML += cName + " ➞ " + pNames[set[4]] + "<br>";
 				
-				document.getElementById("r2").innerHTML = pNames[set[4]] + " ➞ " + pNames[set[0]] + "<br>";
-				document.getElementById("r2").innerHTML += pNames[set[1]] + " ➞ " + pNames[set[2]] + "<br>";
-				document.getElementById("r2").innerHTML += cName + " vs. " + pNames[set[3]] + "<br>";
+					document.getElementById("r2").innerHTML = pNames[set[4]] + " ➞ " + pNames[set[0]] + "<br>";
+					document.getElementById("r2").innerHTML += pNames[set[1]] + " ➞ " + pNames[set[2]] + "<br>";
+					document.getElementById("r2").innerHTML += cName + " vs. " + pNames[set[3]] + "<br>";
 				
-				document.getElementById("innovation").innerHTML = "Innovation: " + pNames[set[3]];
+					document.getElementById("innovation").innerHTML = "Innovation: " + pNames[set[3]];
+				} else {
+					document.getElementById("r1").innerHTML = pNames[set[0]] + " ➞ " + pNames[set[1]] + "<br>";
+					document.getElementById("r1").innerHTML += pNames[set[1]] + " ➞ " + pNames[set[2]] + "<br>";
+					document.getElementById("r1").innerHTML += pNames[set[2]] + " ➞ " + pNames[set[3]] + "<br>";
+					document.getElementById("r1").innerHTML += pNames[set[3]] + " ➞ " + pNames[set[4]] + "<br>";
+					document.getElementById("r1").innerHTML += pNames[set[4]] + " ➞ " + pNames[set[0]] + "<br>";
+					
+					document.getElementById("r2").innerHTML = "<br>"
+					
+					document.getElementById("innovation").innerHTML = "Innovation: " + pNames[set[3]];
+				}
 			}
 			
 			function shuffle(a) {
