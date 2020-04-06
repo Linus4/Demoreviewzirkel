@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<!--
+	Author: Linus Weber
+	Date: 14.03.2019
+	License: MIT
+-->
+
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" id="metaViewport">
+		<meta charset="utf-8">
+		<title>Demoreviewzirkel</title>
+		<script type="text/javascript">
+			
+			function assign() {
+				var pName1 = document.getElementById("player1").value;
+				localStorage.setItem("pName1", pName1);
+				var pName2 = document.getElementById("player2").value;
+				localStorage.setItem("pName2", pName2);
+				var pName3 = document.getElementById("player3").value;
+				localStorage.setItem("pName3", pName3);
+				var pName4 = document.getElementById("player4").value;
+				localStorage.setItem("pName4", pName4);
+				var pName5 = document.getElementById("player5").value;
+				localStorage.setItem("pName5", pName5);
+				var cName = document.getElementById("coach").value;
+				localStorage.setItem("cName", cName);
+				
+				var pNames = [pName1, pName2, pName3, pName4, pName5];			
+				var set = [0, 1, 2, 3, 4];
+				shuffle(set);
+				
+				document.getElementById("r1").innerHTML = pNames[set[0]] + " ➞ " + pNames[set[1]] + "<br>";
+				document.getElementById("r1").innerHTML += pNames[set[2]] + " ➞ " + pNames[set[3]] + "<br>";
+				document.getElementById("r1").innerHTML += cName + " ➞ " + pNames[set[4]] + "<br>";
+				
+				document.getElementById("r2").innerHTML = pNames[set[4]] + " ➞ " + pNames[set[0]] + "<br>";
+				document.getElementById("r2").innerHTML += pNames[set[1]] + " ➞ " + pNames[set[2]] + "<br>";
+				document.getElementById("r2").innerHTML += cName + " vs. " + pNames[set[3]] + "<br>";
+				
+				document.getElementById("innovation").innerHTML = "Innovation: " + pNames[set[3]];
+			}
+			
+			function shuffle(a) {
+				var j, x, i;
+				for (i = a.length - 1; i > 0; i--) {
+					j = Math.floor(Math.random() * (i + 1));
+					x = a[i];
+					a[i] = a[j];
+					a[j] = x;
+				}
+				return a;
+			}
+			
+			function init() {
+				document.getElementById("player1").value = localStorage.getItem("pName1");
+				document.getElementById("player2").value = localStorage.getItem("pName2");
+				document.getElementById("player3").value = localStorage.getItem("pName3");
+				document.getElementById("player4").value = localStorage.getItem("pName4");
+				document.getElementById("player5").value = localStorage.getItem("pName5");
+				document.getElementById("coach").value = localStorage.getItem("cName");
+			}
+			
+			window.addEventListener('DOMContentLoaded', init);
+		</script>
+		
+		<style>
+			html {
+				font-size: 20px;
+			}
+			
+			@media only screen and (min-width: 600px) {
+				body {
+					max-width: 15em;
+					margin: 5% auto;
+				}
+			}
+			
+			input {
+				font-size: 20px;
+				max-width: 6em;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<form>
+			<label for="player1">Player 1:</label>
+			<input type="text" id="player1" /><br>
+			<label for="player2">Player 2:</label>
+			<input type="text" id="player2" /><br>
+			<label for="player3">Player 3:</label>
+			<input type="text" id="player3" /><br>
+			<label for="player4">Player 4:</label>
+			<input type="text" id="player4" /><br>
+			<label for="player5">Player 5:</label>
+			<input type="text" id="player5" /><br>
+			<label for="coach" style="margin-right:15px">Coach:</label>
+			<input style="margin-bottom: 10px" type="text" id="coach" /><br>
+		
+			<input type="button" onclick="assign()" value="Assign" autofocus />
+		</form>
+		
+		<p style="margin-bottom: 20px" id="r1"></p>
+		<p style="margin-bottom: 20px" id="r2"></p>
+		<p id="innovation"></p>
+	</body>
+
+</html>
